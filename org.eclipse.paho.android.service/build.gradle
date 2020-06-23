@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 29
+        testApplicationId "org.eclipse.paho.android.service.test"
+    }
+    buildTypes {
+	   debug{
+
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dexOptions {
+        preDexLibraries = false
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+
+
+configurations {
+   //androidTestCompile.exclude module: 'org.eclipse.paho.client.mqttv3'
+}
+
+dependencies {
+    api "org.eclipse.paho:org.eclipse.paho.client.mqttv3:${rootProject.ext.clientVersion}"
+    api "androidx.appcompat:appcompat:1.0.2"
+    api "androidx.recyclerview:recyclerview:1.1.0"
+    api 'com.google.android.material:material:1.1.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+}
+

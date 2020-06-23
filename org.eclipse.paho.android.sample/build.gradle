@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.sampleArchivesBaseName
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0.1"
+    }
+    buildTypes {
+        debug{
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+    dexOptions {
+        preDexLibraries = false
+    }
+}
+
+
+
+dependencies {
+    //compile fileTree(dir: '../org.eclipse.paho.android/service/libs', excludes: ["org.eclipse.paho.client.mqttv3-${rootProject.ext.clientVersion}.jar"], include: '')
+    implementation project(':org.eclipse.paho.android.service')
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+}
